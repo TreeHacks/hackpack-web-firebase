@@ -1,6 +1,13 @@
 # Web App with Firebase Tutorial 2023
 Updated by Ameya Jadhav
 
+### Overview
+For this Hackpack, we are going to develop a simple online **Personal To-Do List** - a website where you can log in and keep track of your to-do items. In this tutorial, you'll learn the basic process behind making React web apps using Firebase backend for authentication and data storange. Let's get started!
+
+### Clone this Project
+* If you don't have Node.js and npm already installed on your computer, install it from [here](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
+* We will be using Visual Studio Code in this hackpack. Feel free to use any code editor, but using Visual Studio Code is recommended.
+
 ### License
 MIT
 
