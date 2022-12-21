@@ -22,8 +22,9 @@ We will be creating several files and directories before we start coding.
 * Create a new `\src\routes\Login\login.component.jsx` file.
 * Create a new `\src\routes\ToDoListHome\to-do-list-home.component.jsx` file.
 * Create a new `\src\utils\firebase\firebase.utils.js` file.
+* Create a new `\.env` file.
 
-
+The `login.component.jsx` file will be our landing page asking the user to log into their account. The `to-do-list-home.component.jsx` will be our home page after the user logs in where he/she can manage their to-do list. The `firebase.utils.js` file will be the interface file to connect to our Firebase Authentication and Firestore services. The `.env` file will securely hold our Firebase tokens and secrets.
 
 ### License
 MIT
