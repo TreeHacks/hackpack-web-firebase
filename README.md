@@ -4,9 +4,14 @@ Updated by Ameya Jadhav
 ### Overview
 For this Hackpack, we are going to develop a simple online **Personal To-Do List** - a website where you can log in and keep track of your to-do items. In this tutorial, you'll learn the basic process behind making React web apps using Firebase backend for authentication and data storage. Let's get started!
 
-### Clone this Project
+### Start create-react-app
 * If you don't have Node.js and npm already installed on your computer, install it from [here](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
+
 * We will be using Visual Studio Code in this hackpack. Feel free to use any code editor, but using Visual Studio Code is recommended.
+
+* Run the command 'npx create-react-app hackpack-web-firebase'. A directory titled hackpack-web-firebase will be created.
+
+* In the directory, run the command 'npm start'. The create-react-app starter project will be shown in your localhost window (as seen below).
 
 ### License
 MIT
