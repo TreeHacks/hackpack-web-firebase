@@ -13,6 +13,8 @@ For this Hackpack, we are going to develop a simple online **Personal To-Do List
 
 * In the directory, run the command `npm start`. The create-react-app starter project will be shown in your localhost window (as seen below).
 
+![](/docs_assets/create-react-app.png)
+
 ### License
 MIT
 
