@@ -30,6 +30,30 @@ The `login.component.jsx` file will be our landing page asking the user to log i
 
 We will now connect our project to our Firebase account. Please go ahead and complete ONLY step 1 from this [Firebase docs website](https://firebase.google.com/docs/web/setup). We will complete the other steps together.
 
+* Run `npm install firebase` in your project directory to install the necessary Firebase support libraries.
+* Copy the firebaseConfig keys into your `\.env` file. These keys should be listed on your console as below...
+
+```
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaDJSAIDjsmsSIj92SDJIEWmfioadYEI",
+  authDomain: "hackpack-web-firebase.firebaseapp.com",
+  projectId: "hackpack-web-firebase",
+  storageBucket: "hackpack-web-firebase.appspot.com",
+  messagingSenderId: "9847851385",
+  appId: "1:89798123132:web:sd84d6a3w8f98as1563486"
+};
+```
+and should be formatted as below in your '\.env' file.
+```
+REACT_APP_API_KEY=AIzaDJSAIDjsmsSIj92SDJIEWmfioadYEI
+REACT_APP_AUTH_DOMAIN=hackpack-web-firebase.firebaseapp.com
+REACT_APP_PROJECT_ID=hackpack-web-firebase
+REACT_APP_STORAGE_BUCKET=hackpack-web-firebase.appspot.com
+REACT_APP_MESSAGING_SENDER_ID=9847851385
+REACT_APP_APP_ID=1:89798123132:web:sd84d6a3w8f98as1563486
+```
+
 
 ### License
 MIT
