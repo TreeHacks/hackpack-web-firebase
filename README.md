@@ -55,6 +55,13 @@ REACT_APP_STORAGE_BUCKET=hackpack-web-firebase.appspot.com
 REACT_APP_MESSAGING_SENDER_ID=9847851385
 REACT_APP_APP_ID=1:89798123132:web:sd84d6a3w8f98as1563486
 ```
+## What Next
+
+There are lot of things that you can do on top of this application.
+
+
+### More Resources
+
 
 
 ### License
