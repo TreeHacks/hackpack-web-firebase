@@ -26,6 +26,11 @@ We will be creating several files and directories before we start coding.
 
 The `login.component.jsx` file will be our landing page asking the user to log into their account. The `to-do-list-home.component.jsx` will be our home page after the user logs in where he/she can manage their to-do list. The `firebase.utils.js` file will be the interface file to connect to our Firebase Authentication and Firestore services. The `.env` file will securely hold our Firebase tokens and secrets.
 
+### Connecting to Firebase
+
+We will now connect our project to our Firebase account. Please go ahead and complete ONLY step 1 from this [Firebase docs website](https://firebase.google.com/docs/web/setup). We will complete the other steps together.
+
+
 ### License
 MIT
 
