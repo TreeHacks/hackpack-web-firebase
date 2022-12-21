@@ -9,9 +9,9 @@ For this Hackpack, we are going to develop a simple online **Personal To-Do List
 
 * We will be using Visual Studio Code in this hackpack. Feel free to use any code editor, but using Visual Studio Code is recommended.
 
-* Run the command '''npx create-react-app hackpack-web-firebase'''. A directory titled hackpack-web-firebase will be created.
+* Run the command `npx create-react-app hackpack-web-firebase`. A directory titled hackpack-web-firebase will be created.
 
-* In the directory, run the command 'npm start'. The create-react-app starter project will be shown in your localhost window (as seen below).
+* In the directory, run the command `npm start`. The create-react-app starter project will be shown in your localhost window (as seen below).
 
 ### License
 MIT
