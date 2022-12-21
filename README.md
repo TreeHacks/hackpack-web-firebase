@@ -15,6 +15,16 @@ For this Hackpack, we are going to develop a simple online **Personal To-Do List
 
 ![](/docs_assets/create-react-app.png)
 
+### Building template
+
+We will be creating several files and directories before we start coding.
+
+* Create a new `\src\routes\Login\login.component.jsx` file.
+* Create a new `\src\routes\ToDoListHome\to-do-list-home.component.jsx` file.
+* Create a new `\src\utils\firebase\firebase.utils.js` file.
+
+
+
 ### License
 MIT
 
