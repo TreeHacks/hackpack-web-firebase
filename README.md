@@ -55,6 +55,23 @@ REACT_APP_STORAGE_BUCKET=hackpack-web-firebase.appspot.com
 REACT_APP_MESSAGING_SENDER_ID=9847851385
 REACT_APP_APP_ID=1:89798123132:web:sd84d6a3w8f98as1563486
 ```
+
+### Setting up Firebase - Authentication & Firestore
+
+Begin setup of Authentication on Firebase online console...
+* Add the "Email/Password" Native provider when asked to set up a sign-in provider
+* Do not enable passwordless sign-in
+
+![](/docs_assets/auth.png)
+
+Begin setup of Firestore Database on Firebase online console...
+* Click Create Database
+* Use all default/recommended options and set up.
+
+Once set up, you should see sometime similar to the below image.
+
+![](/docs_assets/firestoredb.png)
+
 ## What Next
 
 There are lot of things that you can do on top of this application.
