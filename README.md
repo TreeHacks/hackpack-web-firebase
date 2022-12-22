@@ -85,6 +85,8 @@ Our web app will have two different aspects. One part will be the front-end code
 
 There are lot of things that you can do on top of this application.
 
+Sign in with Google, React Redux, 
+
 
 ### More Resources
 
