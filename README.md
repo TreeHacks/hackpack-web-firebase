@@ -90,6 +90,7 @@ service cloud.firestore {
 Our web app will have two different aspects. One part will be the front-end code to show the web app, and the other part will be the "backend" calls to our Firebase service to authenticate the user and store/retrieve the to-do list.
 
 Set up app.js
+three new files
 
 ```
 npm install react-router-dom
