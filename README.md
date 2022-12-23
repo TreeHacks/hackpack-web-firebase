@@ -213,13 +213,222 @@ npm install react-firebase-hooks
 
 The library `react-router-dom` will give us the capability to navigate between our two pages (`/` and `/home`). The library `react-firebase-hooks` will give us the capability to listen and identify if a user has logged in.
 
-Next, 
+Next, we will write our `\src\routes\Login\login.component.jsx` file which will provide a user login or register options. Copy the following code into `\src\routes\Login\login.component.jsx`.
+
+```
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { logInWithEmailAndPassword, registerWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
+
+const Login = () => {
+    const [loginEmail, setLoginEmail] = useState("");
+    const [loginPassword, setLoginPassword] = useState("");
+    const [registerEmail, setRegisterEmail] = useState("");
+    const [registerPassword, setRegisterPassword] = useState("");
+
+    const navigate = useNavigate();
+
+    const handleSignIn = async () => {
+        try {
+            if (!loginEmail) {
+                console.log('Enter email address!');
+            }
+            if (!loginPassword) {
+                console.log('Enter password!');
+            }
+            if (loginEmail&&loginPassword) {
+                await logInWithEmailAndPassword(loginEmail, loginPassword).then(() => {navigate("/home")});
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const handleRegister = async () => {
+        if (!registerEmail) {
+            console.log('Enter email address!');
+        }
+        if (!registerPassword) {
+            console.log('Enter password!');
+        }
+        if (registerEmail&&registerPassword) {
+            await registerWithEmailAndPassword(registerEmail, registerPassword).then(() => {navigate("/home")});
+        }
+    };
+
+    return (
+        <div>
+            <div className="login">
+                <h1>Login</h1>
+
+                <div className="login__container">
+                    <div>
+                        <label style={{textAlign: "left", fontWeight: 'bold'}}>E-mail Address: </label>
+                        <input
+                            type="text"
+                            className="login__textBox"
+                            value={loginEmail}
+                            onChange={(e) => setLoginEmail((e.target.value).toLowerCase())}
+                            placeholder="E-mail Address"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label style={{textAlign: "left", fontWeight: 'bold'}}>Password: </label>
+                        <input
+                            type="password"
+                            className="login__textBox"
+                            value={loginPassword}
+                            onChange={(e) => setLoginPassword(e.target.value)}
+                            placeholder="Password"
+                            required
+                        />
+                    </div>
+                    <button
+                        className="login__btn"
+                        onClick={handleSignIn}
+                    >
+                        Login
+                    </button>
+                </div>
+            </div>
+
+            <div className="register">
+                <h1>Register</h1>
+
+                <div className="login__container">
+                    <div>
+                        <label style={{textAlign: "left", fontWeight: 'bold'}}>E-mail Address: </label>
+                        <input
+                            type="text"
+                            className="login__textBox"
+                            value={registerEmail}
+                            onChange={(e) => setRegisterEmail((e.target.value).toLowerCase())}
+                            placeholder="E-mail Address"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label style={{textAlign: "left", fontWeight: 'bold'}}>Password: </label>
+                        <input
+                            type="text"
+                            className="login__textBox"
+                            value={registerPassword}
+                            onChange={(e) => setRegisterPassword(e.target.value)}
+                            placeholder="Password"
+                            required
+                        />
+                    </div>
+                    <button
+                        className="login__btn"
+                        onClick={handleRegister}
+                    >
+                        Register
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default Login;
+```
+
+This entire file creates a simple input group for email/password for both login and register. We call our previous `logInWithEmailAndPassword` and `registerWithEmailAndPassword` from our `firebase.utils` file which handles the actual authentication or user creation in our Firebase service.
+
+Once the user is logged in or has created a new account, they are redirected to `/home` with the actual to-do list. We will write this file next. Copy the following code into `\src\routes\ToDoListHome\to-do-list-home.component.jsx`.
+
+```
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { auth, getToDoList, addToDoItem, deleteToDoItem } from "../../utils/firebase/firebase.utils";
+import { useAuthState } from "react-firebase-hooks/auth";
+
+const ToDoListHome = () => {
+    const [user, loading, error] = useAuthState(auth);
+    const [toDoItems, setToDoItems] = useState([]);
+    const [newItem, setNewItem] = useState("");
+    const [refresh, setRefresh] = useState("");
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (loading) return;
+        if (!user) return navigate("/");
+    }, [user, loading]);
+
+    useEffect(() => {
+        if (!loading) {
+            getToDoList(user.email).then((items) => setToDoItems(items));
+        }
+    }, [user, loading, newItem, refresh]);
+
+    const handleAddNewItem = () => {
+        addToDoItem(toDoItems, user.email, newItem);
+        setNewItem("");
+    };
+
+    const handleDeleteItem = (deleteItem) => {
+        deleteToDoItem(toDoItems, user.email, deleteItem);
+        setRefresh(deleteItem);
+    };
+
+    return (
+        <div>
+            <h1>To-Do List</h1>
+
+            {toDoItems && user ? (
+                <table style={{
+                    display: "flex",
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                }}>
+                    <div>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Item</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {(toDoItems) && (toDoItems.map((toDoItem, index) => (
+                            <tr key={index}>
+                                <td>{index + 1}</td>
+                                <td>{toDoItem}</td>
+
+                                <td><button className="ms-1" variant='outline-danger' onClick={() => {handleDeleteItem(toDoItem)}}>x Delete</button>
+                                </td>
+                            </tr>
+                        )))}
+                            <tr>
+                                <td>{"New"}</td>
+                                <td>
+                                    <input value={newItem} type="text" id="newItem" name="newItem" onChange={(e) => {setNewItem(e.target.value)}} />
+                                </td>
+                                <td><button 
+                                    variant="light"
+                                    onClick={handleAddNewItem}
+                                    >Add New</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </div>
+                </table>
+            ) : <h1>Loading list</h1>}
+        </div>
+    );
+};
+
+export default ToDoListHome;
+```
+
+This file creates a simple HTML interface which displays a to-do list (stored in Firebase Firestore Database) and gives the user the option to delete a task from the list or add a new task.
 
 ## What Next
 
 There are lot of things that you can do on top of this application.
 
-Sign in with Google, React Redux, 
+Sign in with Google, React Redux, CSS styling
 
 
 ### More Resources
