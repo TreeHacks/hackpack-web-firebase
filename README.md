@@ -170,10 +170,6 @@ export const registerWithEmailAndPassword = async (email, password) => {
     });
 };
 
-export const logout = () => signOut(auth);
-
-export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback);
-
 export const getToDoList = async (email) => {
     try {
         const docSnap = await getDoc(doc(db, "to-do", email));
@@ -204,16 +200,20 @@ export const deleteToDoItem = async (currentItems, email, deleteItem) => {
     });
 };
 ```
+In this file, we initially register and link our web app to our Firebase console. We do that through the `.env` keys we previously stored. We have 5 main functions in this file: `logInWithEmailAndPassword`, `registerWithEmailAndPassword`, `getToDoList`, `addToDoItem`, and `deleteToDoItem`. Each of these functions does exactly what their name suggests. We will call these functions from our front-end based on user actions.
 
+Next, we will set up our front-end interface for the user. There are two files we will need to write: `\src\routes\Login\login.component.jsx` and `\src\routes\ToDoListHome\to-do-list-home.component.jsx`.
 
-Set up app.js
-three new files
+Before we write any code, we need to install two more dependencies into our React project. Open a terminal/CMD prompt in the project director and run these two commands.
 
 ```
 npm install react-router-dom
 npm install react-firebase-hooks 
 ```
 
+The library `react-router-dom` will give us the capability to navigate between our two pages (`/` and `/home`). The library `react-firebase-hooks` will give us the capability to listen and identify if a user has logged in.
+
+Next, 
 
 ## What Next
 
