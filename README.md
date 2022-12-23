@@ -89,13 +89,129 @@ service cloud.firestore {
 
 Our web app will have two different aspects. One part will be the front-end code to show the web app, and the other part will be the "backend" calls to our Firebase service to authenticate the user and store/retrieve the to-do list.
 
+We will first set up `App.js` file. `App.js` is the starting point of our app. The app component is the main component in React which will act as a container for all of our other components. Replace the template code in `App.js` with the following...
+
+```
+import { React } from 'react';
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+} from 'react-router-dom';
+
+import Login from './routes/Login/login.component';
+import ToDoListHome from './routes/ToDoListHome/to-do-list-home.component';
+
+import './App.css';
+
+function App() {
+  return (
+    <div className='Root'>
+        <div className='App'>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element ={ <Login /> } />
+                    <Route exact path="/home" element ={ <ToDoListHome /> } />
+                </Routes>
+            </BrowserRouter>
+        </div>
+    </div>
+  );
+}
+
+export default App;
+```
+This code is linking our two other components (`Login` and `ToDoListHome`) to specific url paths for our app - `/` and `/home` respectively.
+
+Next, we will write the `\src\utils\firebase\firebase.utils.js` file which will hold our "backend" calls to our Firebase service to authenticate the user and store/retrieve the to-do list. Copy the following code into `\src\utils\firebase\firebase.utils.js`.
+
+```
+import { initializeApp } from "firebase/app";
+
+import {
+    getAuth,
+    signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged,
+    createUserWithEmailAndPassword
+} from "firebase/auth";
+import {
+    getFirestore,
+    getDoc,
+    doc,
+    updateDoc,
+    setDoc,
+} from "firebase/firestore";
+
+const firebaseConfig = {
+    apiKey: process.env.REACT_APP_API_KEY,
+    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_APP_ID,
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+export const db = getFirestore(app);
+
+export const logInWithEmailAndPassword = async (email, password) => {
+    await signInWithEmailAndPassword(auth, email, password);
+};
+
+export const registerWithEmailAndPassword = async (email, password) => {
+    const res = await createUserWithEmailAndPassword(auth, email, password);
+    const user = res.user;
+
+    await setDoc(doc(db, "to-do", email), {
+        items: [],
+    });
+};
+
+export const logout = () => signOut(auth);
+
+export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback);
+
+export const getToDoList = async (email) => {
+    try {
+        const docSnap = await getDoc(doc(db, "to-do", email));
+
+        return docSnap.data().items;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+export const addToDoItem = async (currentItems, email, newItem) => {
+    await updateDoc(doc(db, "to-do", email), {
+        items: [...currentItems, newItem],
+    });
+};
+
+export const deleteToDoItem = async (currentItems, email, deleteItem) => {
+    var newItems = currentItems;
+    
+    const index = newItems.indexOf(deleteItem);
+
+    if (index > -1) {
+        newItems.splice(index, 1);
+    }
+
+    await updateDoc(doc(db, "to-do", email), {
+        items: [...newItems],
+    });
+};
+```
+
+
 Set up app.js
 three new files
 
 ```
 npm install react-router-dom
-npm install react-firebase-hooks
-npm install 
+npm install react-firebase-hooks 
 ```
 
 
