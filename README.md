@@ -1,4 +1,4 @@
-# Web App with Firebase Tutorial 2023
+# ReactJS Web App with Firebase Tutorial 2023
 Created by Ameya Jadhav
 
 Updated by Ameya Jadhav
@@ -338,7 +338,7 @@ This entire file creates a simple input group for email/password for both login 
 
 Once the user is logged in or has created a new account, they are redirected to `/home` with the actual to-do list. We will write this file next. Copy the following code into `\src\routes\ToDoListHome\to-do-list-home.component.jsx`.
 
-```
+```javascript
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth, getToDoList, addToDoItem, deleteToDoItem } from "../../utils/firebase/firebase.utils";
@@ -422,7 +422,13 @@ const ToDoListHome = () => {
 export default ToDoListHome;
 ```
 
-This file creates a simple HTML interface which displays a to-do list (stored in Firebase Firestore Database) and gives the user the option to delete a task from the list or add a new task.
+This file creates a simple HTML interface which displays a to-do list (stored in Firebase Firestore Database) and gives the user the option to delete a task from the list or add a new task. We again call the `getToDoList`, `addToDoItem`, and `deleteToDoItem` functions from our `firebase.utils` file which handle the actual interfacing with our Firebase database.
+
+We are done! Be sure to save all your files and run `npm start` in your project directory to run the web app. You should see something similar to the below screenshots...
+
+![](/docs_assets/landing.png)
+
+![](/docs_assets/home.png)
 
 ## What Next
 
