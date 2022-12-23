@@ -91,7 +91,7 @@ Our web app will have two different aspects. One part will be the front-end code
 
 We will first set up `App.js` file. `App.js` is the starting point of our app. The app component is the main component in React which will act as a container for all of our other components. Replace the template code in `App.js` with the following...
 
-```
+```javascript
 import { React } from 'react';
 import {
     BrowserRouter,
@@ -125,7 +125,7 @@ This code is linking our two other components (`Login` and `ToDoListHome`) to sp
 
 Next, we will write the `\src\utils\firebase\firebase.utils.js` file which will hold our "backend" calls to our Firebase service to authenticate the user and store/retrieve the to-do list. Copy the following code into `\src\utils\firebase\firebase.utils.js`.
 
-```
+```javascript
 import { initializeApp } from "firebase/app";
 
 import {
@@ -215,7 +215,7 @@ The library `react-router-dom` will give us the capability to navigate between o
 
 Next, we will write our `\src\routes\Login\login.component.jsx` file which will provide a user login or register options. Copy the following code into `\src\routes\Login\login.component.jsx`.
 
-```
+```javascript
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { logInWithEmailAndPassword, registerWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
@@ -429,6 +429,10 @@ We are done! Be sure to save all your files and run `npm start` in your project 
 ![](/docs_assets/landing.png)
 
 ![](/docs_assets/home.png)
+
+Our Firestore database should be populated and look something like this...
+
+![](/docs_assets/populatedFirestore.png)
 
 ## What Next
 
