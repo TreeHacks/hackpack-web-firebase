@@ -4,7 +4,7 @@ Created by Ameya Jadhav
 Updated by Ameya Jadhav
 
 ### Overview
-For this Hackpack, we are going to develop a simple online **Personal To-Do List** - a website where you can log in and keep track of your to-do items. In this tutorial, you'll learn the basic process behind making React web apps using Firebase backend for authentication and data storage. Let's get started!
+For this Hackpack, we are going to develop a simple online **Personal To-Do List** - a website where you can log in and keep track of your to-do items. We will be using ReactJS and simple HTML. No CSS will be used in this project, but left as an extension opportunity to this project. In this tutorial, you'll learn the basic process behind making React web apps using Firebase backend for authentication and data storage. Let's get started!
 
 ### Start create-react-app
 * If you don't have Node.js and npm already installed on your computer, install it from [here](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
